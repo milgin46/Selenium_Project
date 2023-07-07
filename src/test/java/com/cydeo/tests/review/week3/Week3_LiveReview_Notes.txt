@@ -1,0 +1,238 @@
+Sunday 6/18
+
+Week 3 Review
+
+
+TODAY'S REVIEW SCHEDULE:
+
+ - Dropdown
+ - Hard and Soft Assertion
+ - Java Faker
+ - Alerts - Iframes - Windows
+ - WebTables - Properties - ConfigReader
+ - TestBase
+
+
+ -----------------------------------------------------------
+
+
+ P.I.Q: HOW DO YOU HANDLE DROPDOWN?
+
+#1- I would create Select class object
+
+#2- I would locate the <select> dropdown and pass it into the constructor.
+
+#3- Now I can use the Select object with the methods that comes from Select class.
+
+Syntax: Select select = new Select( finding <select> dropdown web element)
+
+There are 3 ways of methods we can do selection from Select dropdown; 
+
+     - selectByIndex --> select based on index of options(starts from 0)
+     - selectByValue --> select based on value of value attribute
+     - selectByVisibleText --> selecting based on the visible text of options
+
+
+getOptions() :
+ - Returns all the available options from the dropdown list.
+ - Return type: List<WebElement>
+
+getFirstSelectedOption() :
+  - Returns webelement, default/current selected option
+  - Return type: WebElement
+
+
+---------------------------------
+
+
+P.I.Q: WHAT ARE HARD ASSERT AND SOFT ASSERT?
+
+ HARD ASSERTION:
+
+  - A hard assertion does not continue with execution until the assertion condition is met.
+
+  - Hard assertions usually throw an Assertion Error whenever an assertion condition has not been met.
+  The test case will be immediately marked as Failed when a hard assertion condition fails.
+
+  - A scenario to use this kind of assertion is that, when you want to verify if you have logged in
+  correctly and fail the test if you haven’t made a successful login, as there is no point in proceeding
+   further if the pre-condition(login) itself fails.
+
+
+ SOFT ASSERTION:
+
+  - A soft assertion continues with the next step of the test execution even if the assertion condition is not met.
+
+  - SoftAssert in TestNG helps to collect all the assertions throughout the @Test method and to see assertions
+  result at the end of the test, we have to invoke assertAll().
+
+  - SoftAssert doesn't throw an exception when an assert fails, but it records the failure. The test execution
+  will continue with the next step after the assert statement. Calling assertAll() will cause an exception to be
+  thrown if at least one assertion failed.
+
+  Soft Assertion Syntax:  SoftAssert softAssert = new SoftAssert();
+                          softAssert.assertTrue() or softAssert.assertEqual()
+
+                          at the end of all assertions:
+                          softAssert.assertAll()
+
+
+
+ P.I.Q: HOW CAN WE DECIDE? 
+
+- If you need to execute all the steps of a test case to be executed even after an assertion fails,
+and you also want to report assertion exception, then opt for using Soft Assertions. Using Soft Assertions
+in your test scripts is a good practice and an effective way of handling your test execution
+
+- If you want your test case execution to proceed only after an assertion is passed (For Example, To Verify
+ valid login and only then execute the other steps), then use Hard Assertions
+
+
+-------------------------------
+
+
+P.I.Q: TELL ME THE DIFFERENT TYPES OF ALERTS?
+
+1. Non-JavaScript (HTML) Alerts:
+
+- It is not blocking the page and you are able to right click and inspect.
+- For handling,  we inspect, locate and click just as any other WebElement.
+
+
+2. JavaScript Alerts:
+
+     - It is blocking the page and you are not able to inspect.
+ #1- Information Alert:   
+     - User can only .accept();
+
+ #2- Confirmation Alert:
+     - User can .accept(), and .dismiss()
+
+ #3- Prompt Alert:
+     - User can .accept(), .dismiss(), .sendKeys();
+
+
+HOW TO HANDLE  JS ALERTS?
+
+We Handle JS Alerts using Alert interface  from Selenium.
+
+     Alert alert = driver.switchTo().alert();   
+     Alert alert = Driver.getDriver().switchTo().alert();
+         alert.accept();   
+         alert.dismiss();         
+         alert.sendKeys("I can send keys here");
+
+
+---------------------
+
+
+P.I.Q: WHAT IS IFRAME AND HOW TO HANDLE?
+
+- Iframe is HTML inside of another HTML.
+
+- Since selenium can focus one thing at a time. By default, it will be looking in the main <html> code.
+If there is any inner <html>/iframe , we have to handle it with locating iframe and we must explicitly
+switch to it to be able to do any action in it. Otherwise, Selenium will not be able to see
+any web element
+from the inner html <iframe>
+
+
+
+1. index: indexes start from 0.
+   driver.switchTo().frame(int index);
+
+2. id, name: if there is id or name attribute we can use to locate and switch to iframe 
+   driver.switchTo().frame(String id/name);
+
+3. WebElement: we can locate the iframe as a web element and switch to it.
+   driver.switchTo().frame(WebElement); driver.switchTo().frame(driver.findElement(By.locator);
+
+
+-----------------------
+
+P.I.Q: IF THE TEST REGRESSION SUITE TAKES LONGER HOW TO OPTIMIZE IT TO REDUCE THE EXECUTION TIME?
+
+- Use test data management techniques: Managing test data efficiently can help reduce execution time.
+Instead writing test data in test classes we can store it in configuration.properties file
+
+- Implement test automation best practices: Ensure your test suite follows test automation
+best practices, such as minimizing unnecessary waiting time, using efficient assertions,
+and optimizing test scripts for speed. Streamlining test automation practices can contribute
+to faster execution times.
+
+
+---------------------------
+
+
+P.I.Q: HOW DO YOU HANDLE MULTIPLE WINDOWS/TABS USING SELENIUM?
+
+- We use window handles to handle windows.
+
+- To get current windows handle: 
+        String currentWindow = driver.getWindowHandle();
+
+- To get all the currently open windows’ handles:
+
+        Set<String> allWindowHandles = driver.getWindowHandles();
+          for(String each : allWindowHandles) {
+            driver.switchTo().window(each);
+          }
+
+
+-----------------------
+
+
+P.I.Q: HOW TO FIND DATA IN A WEB TABLE?
+
+- We write custom locators using xpath or cssSelector to find data in a web table.
+
+- We start locating from <table> element and we go one by one tr, th, or td to reach data we want to find.
+
+- tr: table row  -> used to create rows inside of table
+- th: table header -> used to create cells, but it will make content bolded and centered
+- td: table data -> used to create cells inside a table
+
+
+    For example;
+
+- //table[@id='table1']//tr -> That returns all the rows inside of table 1
+
+- //table[@id='table1']/tbody//tr -> That returns all the rows inside of body
+
+- //table[@id='table1']/tbody//tr//td -> returns all of the cells in all the row of body
+
+
+
+
+P.I.Q: HOW DO YOU HANDLE DYNAMIC TABLES?
+
+- We write custom locators using xpath or cssSelector to find data in a web table.
+
+- We start locating from <table> element and we go one by one tr, th, or td to reach data we want to find.
+
+- We should stay away from indexing
+
+- Static data can be email address, website, phone number , etc..
+
+- If we need to locate name of person in table, we should start locatin email and we should continue locating name
+
+- //table[@id='table1']//td[.='jsmith@gmail.com']/preceding-sibling::td[1]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

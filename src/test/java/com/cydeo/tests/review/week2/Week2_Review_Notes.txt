@@ -1,0 +1,288 @@
+
+06/11/2023
+
+Week 2 Review
+
+
+TODAY'S REVIEW SCHEDULE:
+
+- LOCATORS - FINDELEMENT - GETTEXT() - GETATTRIBUTE()
+- CSSSELECTOR - XPATH
+- FINDELEMENTS() - CHECKBOX - RADIO BUTTON
+- DYNAMIC WEBELEMENTS - TESTNG INTRO - DROPDOWNS
+
+
+------------------------------------------------------------------------------------
+
+- LOCATORS - FINDELEMENT - GETTEXT() - GETATTRIBUTE()
+- CSSSELECTOR - XPATH
+
+- How many locators?
+  8 locator: id, name, classname, linkText, partialLinkText, tagname, xpath, and CssSelector
+
+--> All this locators are also methods coming from Selenium library
+
+ __________________________________________________
+|                                                  |
+|  Username                          --> 1         |
+|  _______________________________                 |
+| |                               |  --> 2         |
+| |_______________________________|                |
+|                                                  |  ---> form 
+|  Password                          --> 3         |
+|  ______________________________                  |
+| |                              |                 |
+| |______________________________|   --> 4         |
+|   ________                                       |
+|  | Login  |                        --> 5         |
+|  |________|                                      |
+|__________________________________________________|
+
+
+<form name="login" id="login" action="/authenticate" method="post">  --> form
+    <div class="row">
+      <div class="large-6 small-12 columns">
+        <label for="username">Username</label>   --> 1
+        <input type="text" name="username">      --> 2
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-6 small-12 columns">
+        <label for="password">Password</label>   --> 3
+        <input type="password" name="password">  --> 4
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit" id="wooden_spoon">Login</button> --> 5
+</form>
+
+
+------- Locate below elements: --------
+
+-> form: <form name="login" id="login" action="/authenticate" method="post">
+
+id -> driver.findElement(By.id("login"));
+
+name -> driver.findElement(By.name("login"));
+
+tagname -> driver.findElement(By.tagName("form"));
+
+
+---------------
+
+--> XPATH:
+
+--> "/": it goes one by one starting from html
+--> "//" : it jumps the webelement we want to locate
+
+xpath -> Absolute xpath: /html/body/div/div/div/div/a
+         Relative xpath: //tagname[@attributename='value']
+                         //*[@attributename='value']
+                         //tagname[text()='textOfWebEleemnt'] or 
+                         //tagname[.='textOfWebEleemnt']
+if text has white spaces: //tagname[normalize-space(text())='textOfWebEleemnt'] 
+                         You can go to parent to child with using "/"
+                         You can go form child to parent "/.."
+                         You can go sibling to sibling /following-sinling::
+                                                       /preceding-sibling::
+                         You can locate element with text of webelement
+
+ //form[@name='login']
+ //form[@id='login']
+ //form[@action='/authenticate']
+ //form[@method='post']
+
+
+-----------------
+
+
+--> CSSSELECTOR:
+
+ cssSelector -> tagname[attribute='value']
+                *[attribute='value']
+                tagname#idValue // #: stands for id attribute name
+                tagname.classValue // . : stands for class attribute name
+                You can go to parent to child with using ">"
+                You can't go form child to parent
+                You can't go sibling to sibling
+                You can't locate element with text of webelement
+
+
+ form[name='login']
+ form[id='login']
+ form[action='/authenticate']
+ form[method='post']
+
+
+---------------------------------
+
+-> <label for="username">Username</label>   --> 1
+
+xpath: //label[@for='username']
+       //label[.='Username']
+       //form[@id='login']/div/div/label  or  //form[@id='login']//label
+
+
+cssSelector: label[for='username'] 
+             form[id='login'] > div > div > label
+
+
+-> <label for="password">Password</label>   --> 3
+
+xpath: //label[@for='password']
+       //label[.='Password']
+       //form[@id='login']//label  --> it will give 2 options (1 of 2)
+
+       //form[@id='login']//label[2] --> if they are sibling, it was going to work
+       (//form[@id='login']//label)[2] --> if they are not sibling 
+
+
+------------------------------
+
+P.I.Q: WHAT IS YOUR LOCATOR APPROACH?
+- If there is id, I make sure it is not dynamic and I use it.
+- If there is class, I can check if it is unique or not by using "." from cssSelector
+- If the web element is a LINK, I use "linkText" locator
+- If none of the above is applicable, I am comfortable creating custom locators using XPATH.
+
+
+P.I.Q: WHAT IS THE DIFFERENCE BETWEEN CSS AND XPATH?
+- Css is slightly faster than xpath on IE, other browsers it is negligible.
+- Css is easier to read and write
+
+1.  CSS cannot locate using text of web elements
+    XPATH:  //*[.="Don't Click!"]
+
+2.  CSS cannot find from matches base on index (different parent)
+    XPATH:  (xpathFormula)[indexNumber]
+
+3.  CSS cannot go from child to parent
+    XPATH:  //button/../ --> goes back to parent
+
+* xpath can do more than css, but it is little bit complex
+
+
+--------------------------------
+
+-> getText(): it will return to text of WebElement in String type
+
+String textOfWebElement = webElement.getText();
+
+
+-> getAttribute("attributeNameofElelement"): It accepts atribute name of element as a arg. in String type and return to attribute value in String type
+
+String attributeValue = EebElement.getAttribute("attributeNameofElelement");
+
+
+---------------------------------------------------------------------
+
+
+- FINDELEMENTS() - CHECKBOX - RADIO BUTTON
+
+-> findElements(): We are using this method to locate group of web elements
+                   it will return List<WebElement>
+                   If any element does not found, it will not throw any exception.
+                    It will return to empty list
+
+
+P.I.Q: WHAT ARE THE DIFFERENCES IN BETWEEN FINDELEMENT() AND FINDELEMENTS() METHODS?
+- findElement()
+  - returns single web element
+  - return type: WebElement (coming from Selenium)
+  - it will throw NoSuchElementException if it cannot find a web element with given locator.
+
+- findElements():
+  - returns List of WebElements
+  - return type : List<WebElement>
+  - it will NOT throw exception, it will return empty list
+
+
+P.I.Q: How can you locate all links in any web page? 
+      List<WebElement> allLinks = driver.findElements(By.tagname("a")) 
+                                = driver.findElements(By.xpath("//a"))
+
+----------------------------
+
+
+-> check box: We can just locate and click to it.
+              We can select multiple of checkboxes
+              We can handle it with using isSelected() method to check if checkboxes is selected or not
+              We can also use isEnabled() method to check, if checkbox is enabled or disabled                       
+
+
+
+-> radio button:  We can just locate and click to it.
+                  We can select ONLY ONE from radio buttons
+                  We can handle it with using isSelected() method to check if checkboxes is selected or not
+                  We can also use isEnabled() method to check, if checkbox is enabled or disabled  
+
+
+P.I.Q: HOW DO WE HANDLE CHECKBOXES AND RADIO BUTTONS
+First, we locate then we can click.
+We can check if they are selected or not. --> - isSelected();
+We can check if they are enabled or not. --> isEnabled();
+
+isSelected(); --> if web element is selected, it will return true, if not false.
+isEnabled(); --> if web element is enabled, it will return true, if not false.
+
+
+----------------------------------------------------------------
+
+
+- DYNAMIC WEBELEMENTS:
+
+-> Dynamic WebElement:   ** http://register.rediff.com/register/register.php?FormName=user_details **
+
+
+P.I.Q:  We can handle Dynamic WebElements in 2 ways:
+#1.  If there is no any static part, you have to locate element to reach from parent/sibling/child.
+#2. If there is any static part; 
+    - refresh page 1 or 2 times to see static part.
+    - use the methods provided by - xpath: contains(), starts-with(), ends-with() 
+                                  - cssSelector : contains --> *
+                                                  starts-with --> ^
+                                                  ends-with --> $
+
+• xpath --> //tagName[contains(@attribute, 'value')] 
+• cssSelector --> tagName[attribute* = 'value'] 
+
+• xpath --> //tagName[starts-with(@attribute, 'value')] 
+• cssSelector --> tagName[attribute^ = 'value'] 
+
+• xpath --> //tagName[ends-with(@attribute , 'value')] 
+• cssSelector --> tagName[attribute$ = 'value'] 
+
+
+--> PRACTICE: name='btnchkavail9813b78d'
+              name='btnchkavailabb31dff'
+
+    handle: xpath:        //input[contains(@name,'btn')]
+            cssSelector:  input[name*='btn']          
+
+
+------------------------
+
+
+-> TestNG: It is a unit testing tool and mainly for developers
+           We are using it for making methods runnable
+           Also do verifications
+
+
+ @BeforeClass              —> It will run before everything only 1 time in a class
+   @BeforeMethod       —> It will run before each @Test method (which is @Test)
+      @Test       
+   @AfterMethod          —> It will run after each @Test method (which is @Test)
+   @BeforeMethod.      —> It will run before each @Test method (which is @Test)
+      @Test
+   @AfterMethod          —> It will run after each @Test method (which is @Test)
+ @AfterClass                —> It will run after everything only 1 time in a class
+ 
+
+
+
+
+
+
+
+
+
+

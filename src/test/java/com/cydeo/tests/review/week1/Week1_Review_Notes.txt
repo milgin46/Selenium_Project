@@ -1,0 +1,163 @@
+06/04/2023
+
+UI Test Automation Week1
+
+- Today's schedule:
+  - HTML
+  - Selenium Intro
+
+
+---------------------------------------------------------------------
+
+<img class="lnXdpd" alt="Google" height="92" src="/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" srcset="/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png 1x, /images/branding/googlelogo/2x/googlelogo_color_272x92dp.png 2x" width="272" data-atf="1" data-frt="0">
+
+
+self closing tag/unpaired tag : there is no content
+
+tag name: img
+
+             name   value
+attributes: class="lnXdpd"
+              alt="Google"
+           height="92"
+
+
+-----------------------------------------------------------
+
+<a class="gb_v" aria-label="Gmail (opens a new tab)" data-pid="23" href="https://mail.google.com/mail/&amp;ogbl" target="_top">Gmail</a>
+
+
+paired tag: it has opening and closing tag
+            There is a content between opening and closing tag: Gmail
+
+
+tag name: a
+
+what do I see on the webpage as a text? Gmail
+
+  attribute name    attribute value
+      class           "gb_v"
+      aria-label     "Gmail (opens a new tab)"
+      data-pid       "23"
+      href           "https://mail.google.com/mail/&amp;ogbl"
+      target         "_top"
+
+
+---------------------------------------------------------
+
+<p style="color:red">My name is <strong>Mike</strong>. <br> My age is 25. <br> My job is <u><em>Automation Tester</em></u>. </p>
+
+opening tag: <p style="color:red">
+closing tag: </p>
+content: My name is Mike. 
+         My age is 25. 
+         My job is Automation Tester.
+
+
+
+--------------------------------------
+
+
+- What is HTML? Can you explain how it works?
+
+ - HTML stands for HyperText Markup Language, and it is the standard language used to create and structure content on the web.
+
+ - HTML is used to create certain structure for web applications using markup tags which are used to structure and format content
+ on a web page. These tags are used to create headings, paragraphs, lists, links, tables, images, and other elements of a web page.
+
+ - When a web page is loaded, the browser creates a Document Object Model (DOM) of the page. When we right click and select inspect,
+  we can see DOM of the page.
+
+
+-----------------------
+
+
+- What is Selenium?
+
+ - Selenium is an open source project (library) to automate browsers
+
+
+-------------
+
+
+- Why are we using Selenium? What are the Advantages of Selenium?
+
+ - Open source --> Free which makes it cost-effective for organizations.
+ 
+ - Supports multiple programming languages Java, Python, C#, Ruby, and JavaScript, offering flexibility for testers.
+ 
+ - Supports multiple OS (Windows, Mac, Linux)
+ 
+ - Supports multiple browsers (Chrome, Safari, Firefox, etc..)
+ 
+ - It has a major community support behind it
+
+
+--------------
+
+
+- What are the Disadvantages of Selenium?
+
+ - Selenium automates Web browsers only, it doesn’t support Computer Desktop Applications.
+ 
+ - Requires technical knowledge to use like programming skills.
+ 
+ - No tech support as it is an open-source. For any issues, one has to rely only on community forums to get your technical issues resolved.
+ 
+ - There is no built-in report coming from Selenium library, requiring third-party tools or plugins for reporting.
+ 
+ - Selenium independently does not support image, captcha testing.
+
+
+------------------
+
+
+- SELENIUM METHODS:
+
+ - get(“URL”) : It gets given URL in an opened browser.
+ 
+ - navigate().forward () :  will take page to forward page
+ 
+ - navigate().back() :  will take page to previous page
+ 
+ - navigate().refresh() :  will refresh the current page
+ 
+ - getText(): It will return the text of the provided WebElement as a String
+ 
+ - getAttribute("attributeName"): It will find the matching "attributeName" and return its value as a String.
+ 
+ - close(): It is used to close the current browser window having focus.
+ 
+ - quit():If we have more than one opened window/page it will closed all of them
+
+
+-------------------
+
+
+- What is the difference between http and https?
+
+ - HTTP is Hypertext Transfer Protocol. 
+ - HTTPS stands for Hyper Text Transfer Protocol Secure
+
+ - HTTP is less secure as the data can be vulnerable to hackers.
+ - HTTPS is designed to prevent hackers from accessing critical information. It is secure against such attacks.
+
+ - HTTP website doesn’t use encryption.
+ - HTTPS websites use data encryption.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

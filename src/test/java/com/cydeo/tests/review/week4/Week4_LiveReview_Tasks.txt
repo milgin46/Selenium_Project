@@ -1,0 +1,105 @@
+
+Week 4 Live Review and Extra Tasks
+
+
+// TC : Web table practice
+    // 1. Open Chrome browser
+    // 2. Go to https://practice.cydeo.com/tables
+    // 3. Print table data as a single String, not so common, but useful sometimes
+    // 4. verify tconway@earthlink.net is anywhere in the table
+    // 5. print all column names in single line
+    // 6. print each column name in separate lines using a loop and findElements method
+
+
+
+// TC: Guru99 Upload Test
+  //1. Go to  “https://demo.guru99.com/test/upload”
+  //2. Upload file into Choose File
+  //3. Click terms of service check box
+  //4. Click Submit File button
+  //5. Verify expected message appeared.
+  // Expected: “1 file
+   // has been successfully uploaded.
+
+
+
+// TC: Guru99 Drag and Drop Test
+  // 1- Open a chrome browser
+  // 2- Go to: https://demo.guru99.com/test/drag_drop.html
+  // 3- Drag “BANK” and drop into Account area under Debit Side
+  // 4- Drag “5000” and drop into Amount area under Debit Side
+
+
+
+// TC: Etsy page javascriptexecutor scrool Test
+  // 1- Open a chrome browser
+  // 2- Go to: https://www.etsy.com/
+  // 3- Scroll down until email input
+  // 4- Generate random email using Faker and enter into subscribe box
+  // 5- Click on Subscribe
+  // 6- Verify "Great! We've sent you an email to confirm your subscription." is displayed
+   ( Note: step 6 will fail because of etsy security system is not leeting us to automate this part of app )
+
+-------------------------------
+
+--> Use POM for below practices:
+
+// TC: Vytrack app login test as Driver
+  // 1- Open a chrome browser
+  // 2- Go to: https://qa3.vytrack.com/user/login
+  // 3. Enter username User1
+  // 4. Enter password UserUser123
+  // 5. Click to Login button
+
+
+  // TC: Vytrack app login test as Salesmanager
+  // 1- Open a chrome browser
+  // 2- Go to: https://qa3.vytrack.com/user/login
+  // 3. Enter username salesmanager120
+  // 4. Enter password UserUser123
+  // 5. Click to Login button
+
+
+  // TC: Vytrack app login test as Storemanager
+  // 1- Open a chrome browser
+  // 2- Go to: https://qa3.vytrack.com/user/login
+  // 3. Enter username storemanager85
+  // 4. Enter password UserUser123
+  // 5. Click to Login button
+
+
+// TC: Vytrack app main menus test as Salesmanager
+  // 1- Open a chrome browser
+  // 2- Go to: https://qa3.vytrack.com/user/login
+  // 3. Enter username salesmanager120
+  // 4. Enter password UserUser123
+  // 5. Click to Login button
+  // 6. Hover over each main menu
+
+
+
+// TC: WebdriverWait practice
+// 1. Go to https://practice.cydeo.com/dynamic_loading/1
+// 2. Click to start
+// 3. Wait until loading bar disappears
+// 4. Assert username inputbox is displayed
+// 5. Enter username: tomsmith
+// 6. Enter password: incorrectpassword
+// 7. Click to Submit button
+// 8. Assert “Your password is invalid!” text is displayed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
